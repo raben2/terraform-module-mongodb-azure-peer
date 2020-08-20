@@ -1,6 +1,6 @@
 // mongoDB cluster configuration vars
 
-# Mongo atlas 
+# Mongo atlas
 variable "atlas_mongo_org" {
   type        = string
   description = "mongodb organization id"
@@ -80,13 +80,13 @@ variable "env" {
 variable "name" {
   type        = string
   description = "base name"
-  default     = "product-core"
+  default     = ""
 }
 
 variable "team" {
   type        = string
   description = "development team"
-  default     = "oaktree"
+  default     = ""
 }
 variable "tenant" {
   type        = string
