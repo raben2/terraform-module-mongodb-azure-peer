@@ -25,7 +25,7 @@ variable "atlas_mongo_replicas" {
   default     = 3
 }
 
-variable "atlas_region" {
+variable "atlas_mongo_region" {
   type        = string
   description = "atlas mongo identifier for azure region"
   default     = "EUROPE_WEST"

@@ -13,7 +13,7 @@ resource "mongodbatlas_network_container" "peer" {
   project_id       = mongodbatlas_project.project.id
   atlas_cidr_block = var.atlas_mongo_cidr
   provider_name    = var.atlas_mongo_provider
-  region           = var.atlas_region
+  region           = var.atlas_mongo_region
 
 }
 
@@ -49,7 +49,7 @@ resource "mongodbatlas_cluster" "database" {
 
   provider_name               = var.atlas_mongo_provider
   provider_instance_size_name = var.atlas_mongo_offering
-  provider_region_name        = var.atlas_region
+  provider_region_name        = var.atlas_mongo_region
 }
 
 
