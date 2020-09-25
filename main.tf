@@ -65,7 +65,7 @@ resource "mongodbatlas_database_user" "admin" {
   }
 }
 
-resource "mongodbatlas_database_user" "product_core_user" {
+resource "mongodbatlas_database_user" "app_user" {
   project_id         = mongodbatlas_project.project.id
   username           = format("%s-mongo-app", var.env)
   password           = random_string.password[1].result
