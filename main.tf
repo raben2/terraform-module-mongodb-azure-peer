@@ -75,10 +75,6 @@ resource "mongodbatlas_database_user" "app_user" {
     role_name     = "readWrite"
     database_name = var.mongodb_collection_name
   }
-  roles {
-    role_name     = "readWrite"
-    database_name = var.secondary_collection
-  }
   labels {
     key   = "team"
     value = var.team

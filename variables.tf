@@ -65,11 +65,6 @@ variable "mongodb_collection_name" {
   description = "main collection name"
   default     = ""
 }
-variable "secondary_collection" {
-  type        = string
-  description = "secondary collection"
-  default     = "feature-template"
-}
 
 variable "env" {
   type        = string

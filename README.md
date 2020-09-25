@@ -38,7 +38,6 @@ The peering service principal has to be created via `az` cli tool
 | peer\_cidr | cidr subnet of the vnet for peering | `string` | `""` | no |
 | provider\_backup\_enabled | Set to true to enable Atlas continuous backups for the cluster | `bool` | `true` | no |
 | resource\_group\_name | azure resource group name | `string` | `""` | no |
-| secondary\_collection | secondary collection | `string` | `"feature-template"` | no |
 | subscription | azure subscription id | `string` | `""` | no |
 | team | development team | `string` | `""` | no |
 | tenant | azure ad tenant id | `string` | `""` | no |
