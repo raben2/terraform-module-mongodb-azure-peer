@@ -10,5 +10,5 @@ output "mongo_admin_user_password" {
 }
 
 output "mongodb_peering_id" {
-  value = mongodbatlas_network_peering.azure[0].atlas_id
+  value = mongodbatlas_network_peering.azure[*].atlas_id
 }

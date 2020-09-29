@@ -10,7 +10,7 @@ resource "mongodbatlas_project" "project" {
 }
 
 resource "mongodbatlas_network_container" "peer" {
-  for_each         = var.peering_enabled ? [1] : []
+  count            = var.peering_enabled ? 1 : 0
   project_id       = mongodbatlas_project.project.id
   atlas_cidr_block = var.atlas_mongo_cidr
   provider_name    = var.atlas_mongo_provider
@@ -19,7 +19,7 @@ resource "mongodbatlas_network_container" "peer" {
 }
 
 resource "mongodbatlas_network_peering" "azure" {
-  for_each              = var.peering_enabled ? [1] : []
+  count                 = var.peering_enabled ? 1 : 0
   project_id            = mongodbatlas_project.project.id
   container_id          = mongodbatlas_network_container.peer[0].container_id
   atlas_cidr_block      = var.atlas_mongo_cidr
