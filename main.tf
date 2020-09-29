@@ -21,7 +21,7 @@ resource "mongodbatlas_network_container" "peer" {
 resource "mongodbatlas_network_peering" "azure" {
   for_each              = var.peering_enabled ? [1] : []
   project_id            = mongodbatlas_project.project.id
-  container_id          = mongodbatlas_network_container.peer.container_id
+  container_id          = mongodbatlas_network_container.peer[0].container_id
   atlas_cidr_block      = var.atlas_mongo_cidr
   provider_name         = var.atlas_mongo_provider
   azure_directory_id    = var.tenant
@@ -71,7 +71,7 @@ resource "mongodbatlas_database_user" "app_user" {
   for_each           = length(var.mongodb_collection_name)
   project_id         = mongodbatlas_project.project.id
   username           = format("%s-mongo-%s", var.env, element(var.mongodb_collection_name, count.index))
-  password           = random_string.password[count.index].result
+  password           = random_string.user_password[count.index].result
   auth_database_name = "admin"
 
   roles {
