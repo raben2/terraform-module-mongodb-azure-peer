@@ -10,6 +10,7 @@ resource "mongodbatlas_project" "project" {
 }
 
 resource "mongodbatlas_network_container" "peer" {
+  for_each         = var.peering_enabled ? [1] : []
   project_id       = mongodbatlas_project.project.id
   atlas_cidr_block = var.atlas_mongo_cidr
   provider_name    = var.atlas_mongo_provider
@@ -18,6 +19,7 @@ resource "mongodbatlas_network_container" "peer" {
 }
 
 resource "mongodbatlas_network_peering" "azure" {
+  for_each              = var.peering_enabled ? [1] : []
   project_id            = mongodbatlas_project.project.id
   container_id          = mongodbatlas_network_container.peer.container_id
   atlas_cidr_block      = var.atlas_mongo_cidr
@@ -55,7 +57,7 @@ resource "mongodbatlas_cluster" "database" {
 
 resource "mongodbatlas_database_user" "admin" {
   username           = format("%s-mongo-admin", var.env)
-  password           = random_string.password[0].result
+  password           = random_string.admin_password.result
   project_id         = mongodbatlas_project.project.id
   auth_database_name = "admin"
 
@@ -66,14 +68,15 @@ resource "mongodbatlas_database_user" "admin" {
 }
 
 resource "mongodbatlas_database_user" "app_user" {
+  for_each           = length(var.mongodb_collection_name)
   project_id         = mongodbatlas_project.project.id
-  username           = format("%s-mongo-app", var.env)
-  password           = random_string.password[1].result
+  username           = format("%s-mongo-%s", var.env, element(var.mongodb_collection_name, count.index))
+  password           = random_string.password[count.index].result
   auth_database_name = "admin"
 
   roles {
     role_name     = "readWrite"
-    database_name = var.mongodb_collection_name
+    database_name = element(var.mongodb_collection_name, count.index)
   }
   labels {
     key   = "team"
@@ -81,9 +84,17 @@ resource "mongodbatlas_database_user" "app_user" {
   }
 }
 
+resource "random_string" "user_password" {
+  for_each  = length(var.mongodb_collection_name)
+  length    = 25
+  special   = false
+  upper     = true
+  min_lower = 4
+  min_upper = 4
+}
 
-resource "random_string" "password" {
-  count     = 2
+
+resource "random_string" "admin_password" {
   length    = 25
   special   = false
   upper     = true

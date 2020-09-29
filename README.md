@@ -32,10 +32,11 @@ The peering service principal has to be created via `az` cli tool
 | auto\_scaling\_disk\_gb\_enabled | Specifies whether disk auto-scaling is enabled. For M2 and M5 it must be false. | `bool` | `false` | no |
 | disk\_size\_gb | The size in gigabytes of the server’s root volume. Maximum possible value of 4096 (i.e., 4 TB), minimum 10GB. | `number` | `10` | no |
 | env | environment | `string` | `""` | no |
-| mongodb\_collection\_name | main collection name | `string` | `""` | no |
+| mongodb\_collection\_name | main collection name(s) | `list(string)` | <pre>[<br>  ""<br>]</pre> | no |
 | name | base name | `string` | `""` | no |
 | number\_of\_shards | shards created per default | `number` | `1` | no |
-| peer\_cidr | cidr subnet of the vnet for peering | `string` | `""` | no |
+| peer\_cidr | cidr subnet of the vnet for peering | `string` | `"0.0.0.0/0"` | no |
+| peering\_enabled | Helper variable for network peering | `bool` | `false` | no |
 | provider\_backup\_enabled | Set to true to enable Atlas continuous backups for the cluster | `bool` | `true` | no |
 | resource\_group\_name | azure resource group name | `string` | `""` | no |
 | subscription | azure subscription id | `string` | `""` | no |
