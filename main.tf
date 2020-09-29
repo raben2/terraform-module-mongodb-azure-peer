@@ -68,7 +68,7 @@ resource "mongodbatlas_database_user" "admin" {
 }
 
 resource "mongodbatlas_database_user" "app_user" {
-  for_each           = length(var.mongodb_collection_name)
+  count              = length(var.mongodb_collection_name)
   project_id         = mongodbatlas_project.project.id
   username           = format("%s-mongo-%s", var.env, element(var.mongodb_collection_name, count.index))
   password           = random_string.user_password[count.index].result
@@ -85,7 +85,7 @@ resource "mongodbatlas_database_user" "app_user" {
 }
 
 resource "random_string" "user_password" {
-  for_each  = length(var.mongodb_collection_name)
+  count     = length(var.mongodb_collection_name)
   length    = 25
   special   = false
   upper     = true
