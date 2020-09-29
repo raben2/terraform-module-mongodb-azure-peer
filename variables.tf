@@ -16,7 +16,7 @@ variable "atlas_mongo_version" {
 variable "atlas_mongo_offering" {
   type        = string
   description = "instance type to use"
-  default     = "M2"
+  default     = "M20"
 }
 
 variable "atlas_mongo_replicas" {
