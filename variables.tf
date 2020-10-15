@@ -63,7 +63,7 @@ variable "provider_backup_enabled" {
 variable "mongodb_collection_name" {
   type        = list(string)
   description = "main collection name(s)"
-  default     = [""]
+  default     = []
 }
 
 variable "env" {
@@ -80,7 +80,7 @@ variable "name" {
 
 variable "team" {
   type        = string
-  description = "development team"
+  description = "MongoDB atlas Team for project access"
   default     = ""
 }
 variable "tenant" {

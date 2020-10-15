@@ -7,6 +7,11 @@
 resource "mongodbatlas_project" "project" {
   name   = format("%s-project-%s", var.name, var.env)
   org_id = var.atlas_mongo_org
+  teams {
+    team_id    = var.team
+    role_names = ["GROUP_OWNER"]
+
+  }
 }
 
 resource "mongodbatlas_network_container" "peer" {
