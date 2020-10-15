@@ -16,7 +16,7 @@ variable "atlas_mongo_version" {
 variable "atlas_mongo_offering" {
   type        = string
   description = "instance type to use"
-  default     = "M2"
+  default     = "M20"
 }
 
 variable "atlas_mongo_replicas" {
@@ -61,9 +61,9 @@ variable "provider_backup_enabled" {
 }
 
 variable "mongodb_collection_name" {
-  type        = string
-  description = "main collection name"
-  default     = ""
+  type        = list(string)
+  description = "main collection name(s)"
+  default     = []
 }
 
 variable "env" {
@@ -80,7 +80,7 @@ variable "name" {
 
 variable "team" {
   type        = string
-  description = "development team"
+  description = "MongoDB atlas Team for project access"
   default     = ""
 }
 variable "tenant" {
@@ -110,11 +110,17 @@ variable "vnet_name" {
 variable "peer_cidr" {
   type        = string
   description = "cidr subnet of the vnet for peering"
-  default     = ""
+  default     = "0.0.0.0/0"
 }
 
 variable "number_of_shards" {
   type        = number
   description = "shards created per default"
   default     = 1
+}
+
+variable "peering_enabled" {
+  type        = bool
+  default     = false
+  description = "Helper variable for network peering"
 }
