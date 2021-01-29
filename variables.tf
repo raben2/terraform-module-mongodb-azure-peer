@@ -83,6 +83,11 @@ variable "team" {
   description = "MongoDB atlas Team for project access"
   default     = ""
 }
+variable "audit_team" {
+  type        = string
+  description = "mongo atlas team for read only project access"
+  default     = ""
+}
 variable "tenant" {
   type        = string
   description = "azure ad tenant id"

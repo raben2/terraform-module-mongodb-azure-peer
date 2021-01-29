@@ -10,7 +10,10 @@ resource "mongodbatlas_project" "project" {
   teams {
     team_id    = var.team
     role_names = ["GROUP_OWNER"]
-
+  }
+  teams {
+    team_id    = var.audit_team
+    role_names = ["GROUP_READ_ONLY"]
   }
 }
 
