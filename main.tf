@@ -13,7 +13,7 @@ resource "mongodbatlas_project" "project" {
   }
   teams {
     team_id    = var.audit_team
-    role_names = ["GROUP_READ_ONLY"]
+    role_names = ["GROUP_READ_ONLY", "GROUP_DATA_ACCESS_READ_ONLY"]
   }
 }
 
