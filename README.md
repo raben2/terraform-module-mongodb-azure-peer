@@ -9,7 +9,7 @@ No requirements.
 
 | Name | Version |
 |------|---------|
-| mongodbatlas | 0.6.0 |
+| mongodbatlas | 0.8.2 |
 | random | n/a |
 
 ## Prerequisites 
@@ -17,6 +17,7 @@ No requirements.
 The peering service principal has to be created via `az` cli tool
 
 `az ad sp create --id $PEER_SP_UUID`
+
 
 ## Inputs
 
@@ -52,6 +53,7 @@ The peering service principal has to be created via `az` cli tool
 |------|-------------|
 | mongo\_admin\_user\_password | n/a |
 | mongo\_app\_user\_password | n/a |
+| mongo\_audit\_user\_password | n/a |
 | mongodb\_peering\_id | n/a |
 | private\_endpoints | n/a |
 
