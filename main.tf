@@ -107,7 +107,7 @@ resource "mongodbatlas_database_user" "audit_user" {
   auth_database_name = "admin"
 
   roles {
-    role_name     = "readOnly"
+    role_name     = "read"
     database_name = element(var.mongodb_collection_name, count.index)
   }
   labels {
