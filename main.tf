@@ -102,7 +102,7 @@ resource "mongodbatlas_database_user" "app_user" {
 resource "mongodbatlas_database_user" "audit_user" {
   count              = length(var.mongodb_collection_name)
   project_id         = mongodbatlas_project.project.id
-  username           = format("%s-mongo-%s", var.env, element(var.mongodb_collection_name, count.index))
+  username           = format("%s-mongo-%s-audit", var.env, element(var.mongodb_collection_name, count.index))
   password           = random_string.audit_password[count.index].result
   auth_database_name = "admin"
 
@@ -112,7 +112,7 @@ resource "mongodbatlas_database_user" "audit_user" {
   }
   labels {
     key   = "team"
-    value = var.team
+    value = var.audit_team
   }
 }
 
