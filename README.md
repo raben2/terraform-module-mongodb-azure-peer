@@ -17,6 +17,7 @@ No requirements.
 The peering service principal has to be created via `az` cli tool
 
 `az ad sp create --id $PEER_SP_UUID`
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
@@ -38,6 +39,7 @@ The peering service principal has to be created via `az` cli tool
 | peer\_cidr | cidr subnet of the vnet for peering | `string` | `"0.0.0.0/0"` | no |
 | peering\_enabled | Helper variable for network peering | `bool` | `false` | no |
 | provider\_backup\_enabled | Set to true to enable Atlas continuous backups for the cluster | `bool` | `true` | no |
+| public\_access\_enabled | allow database access from everywhere | `bool` | `false` | no |
 | resource\_group\_name | azure resource group name | `string` | `""` | no |
 | subscription | azure subscription id | `string` | `""` | no |
 | team | MongoDB atlas Team for project access | `string` | `""` | no |

@@ -129,3 +129,9 @@ variable "peering_enabled" {
   default     = false
   description = "Helper variable for network peering"
 }
+
+variable "public_access_enabled" {
+  type        = bool
+  default     = false
+  description = "allow database access from everywhere"
+}

@@ -45,6 +45,13 @@ resource "mongodbatlas_project_ip_whitelist" "rest" {
 
 }
 
+resource "mongodbatlas_project_ip_whitelist" "public" {
+  count      = var.public_access_enabled ? 1 : 0
+  project_id = mongodbatlas_project.project.id
+  cidr_block = "0.0.0.0/0"
+  comment    = "public cluster access"
+}
+
 resource "mongodbatlas_cluster" "database" {
   depends_on = [mongodbatlas_network_peering.azure]
   project_id = mongodbatlas_project.project.id
