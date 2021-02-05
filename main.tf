@@ -134,7 +134,7 @@ resource "random_string" "admin_password" {
   min_upper = 4
 }
 
-resource "random_string" "auditor_password" {
+resource "random_string" "audit_password" {
   count     = length(var.mongodb_collection_name)
   length    = 25
   special   = false
