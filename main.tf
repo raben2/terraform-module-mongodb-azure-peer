@@ -99,6 +99,23 @@ resource "mongodbatlas_database_user" "app_user" {
   }
 }
 
+resource "mongodbatlas_database_user" "audit_user" {
+  count              = length(var.mongodb_collection_name)
+  project_id         = mongodbatlas_project.project.id
+  username           = format("%s-mongo-%s", var.env, element(var.mongodb_collection_name, count.index))
+  password           = random_string.audit_password[count.index].result
+  auth_database_name = "admin"
+
+  roles {
+    role_name     = "readOnly"
+    database_name = element(var.mongodb_collection_name, count.index)
+  }
+  labels {
+    key   = "team"
+    value = var.team
+  }
+}
+
 resource "random_string" "user_password" {
   count     = length(var.mongodb_collection_name)
   length    = 25
@@ -110,6 +127,15 @@ resource "random_string" "user_password" {
 
 
 resource "random_string" "admin_password" {
+  length    = 25
+  special   = false
+  upper     = true
+  min_lower = 4
+  min_upper = 4
+}
+
+resource "random_string" "auditor_password" {
+  count     = length(var.mongodb_collection_name)
   length    = 25
   special   = false
   upper     = true
