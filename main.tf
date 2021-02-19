@@ -47,6 +47,7 @@ resource "mongodbatlas_project_ip_whitelist" "rest" {
 
 resource "mongodbatlas_project_ip_whitelist" "public" {
   count      = var.public_access_enabled ? 1 : 0
+  depends_on = [mongodbatlas_cluster.peer_database, mongodbatlas_cluster_no_peer_database]
   project_id = mongodbatlas_project.project.id
   cidr_block = "0.0.0.0/0"
   comment    = "public cluster access"
@@ -58,14 +59,12 @@ resource "mongodbatlas_cluster" "peer_database" {
   project_id = mongodbatlas_project.project.id
   num_shards = var.number_of_shards
   name       = format("%s-cluster-%s", var.name, var.env)
-
-  replication_factor           = var.atlas_mongo_replicas
   provider_backup_enabled      = var.provider_backup_enabled
   auto_scaling_disk_gb_enabled = var.auto_scaling_disk_gb_enabled
   mongo_db_major_version       = var.atlas_mongo_version
   cluster_type                 = var.atlas_mongo_cluster_type
   replication_specs {
-    num_shards = var.atlas_mongo_replicas
+    num_shards = 1
     regions_config {
       region_name     = var.atlas_mongo_region
       electable_nodes = 3
@@ -83,14 +82,12 @@ resource "mongodbatlas_cluster" "no_peer_database" {
   project_id = mongodbatlas_project.project.id
   num_shards = var.number_of_shards
   name       = format("%s-cluster-%s", var.name, var.env)
-
-  replication_factor           = var.atlas_mongo_replicas
   provider_backup_enabled      = var.provider_backup_enabled
   auto_scaling_disk_gb_enabled = var.auto_scaling_disk_gb_enabled
   mongo_db_major_version       = var.atlas_mongo_version
   cluster_type                 = var.atlas_mongo_cluster_type
   replication_specs {
-    num_shards = var.atlas_mongo_replicas
+    num_shards = 1
     regions_config {
       region_name     = var.atlas_mongo_region
       electable_nodes = 3
