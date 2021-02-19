@@ -68,7 +68,7 @@ resource "mongodbatlas_cluster" "peer_database" {
     num_shards = var.atlas_mongo_replicas
     regions_config {
       region_name     = var.atlas_mongo_region
-      electable_nodes = 2
+      electable_nodes = 3
       priority        = 7
       read_only_nodes = 0
     }
@@ -93,7 +93,7 @@ resource "mongodbatlas_cluster" "no_peer_database" {
     num_shards = var.atlas_mongo_replicas
     regions_config {
       region_name     = var.atlas_mongo_region
-      electable_nodes = 2
+      electable_nodes = 3
       priority        = 7
       read_only_nodes = 0
     }
