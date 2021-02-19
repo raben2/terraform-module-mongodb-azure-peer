@@ -65,7 +65,7 @@ resource "mongodbatlas_cluster" "peer_database" {
   mongo_db_major_version       = var.atlas_mongo_version
   cluster_type                 = var.atlas_mongo_cluster_type
   replication_specs {
-    num_shards = 2
+    num_shards = var.atlas_mongo_replica
     regions_config {
       region_name     = var.atlas_mongo_region
       electable_nodes = 2
@@ -88,6 +88,16 @@ resource "mongodbatlas_cluster" "no_peer_database" {
   provider_backup_enabled      = var.provider_backup_enabled
   auto_scaling_disk_gb_enabled = var.auto_scaling_disk_gb_enabled
   mongo_db_major_version       = var.atlas_mongo_version
+  cluster_type                 = var.atlas_mongo_cluster_type
+  replication_specs {
+    num_shards = var.atlas_mongo_replica
+    regions_config {
+      region_name     = var.atlas_mongo_region
+      electable_nodes = 2
+      priority        = 7
+      read_only_nodes = 0
+    }
+  }
   provider_name                = var.atlas_mongo_provider
   provider_instance_size_name  = var.atlas_mongo_offering
 
