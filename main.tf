@@ -52,7 +52,8 @@ resource "mongodbatlas_project_ip_whitelist" "public" {
   comment    = "public cluster access"
 }
 
-resource "mongodbatlas_cluster" "database" {
+resource "mongodbatlas_cluster" "peer_database" {
+  count      = var.peering_enabled ? 1 : 0
   depends_on = [mongodbatlas_network_peering.azure]
   project_id = mongodbatlas_project.project.id
   num_shards = var.number_of_shards
@@ -69,6 +70,20 @@ resource "mongodbatlas_cluster" "database" {
   provider_region_name        = var.atlas_mongo_region
 }
 
+resource "mongodbatlas_cluster" "no_peer_database" {
+  count      = var.peering_enabled ? 0 : 1
+  project_id = mongodbatlas_project.project.id
+  num_shards = var.number_of_shards
+  name       = format("%s-cluster-%s", var.name, var.env)
+
+  replication_factor           = var.atlas_mongo_replicas
+  provider_backup_enabled      = var.provider_backup_enabled
+  auto_scaling_disk_gb_enabled = var.auto_scaling_disk_gb_enabled
+  mongo_db_major_version       = var.atlas_mongo_version
+  provider_name                = var.atlas_mongo_provider
+  provider_instance_size_name  = var.atlas_mongo_offering
+
+}
 
 resource "mongodbatlas_database_user" "admin" {
   username           = format("%s-mongo-admin", var.env)
