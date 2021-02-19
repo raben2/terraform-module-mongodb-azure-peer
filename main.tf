@@ -65,7 +65,7 @@ resource "mongodbatlas_cluster" "peer_database" {
   mongo_db_major_version       = var.atlas_mongo_version
   cluster_type                 = var.atlas_mongo_cluster_type
   replication_specs {
-    num_shards = var.atlas_mongo_replica
+    num_shards = var.atlas_mongo_replicas
     regions_config {
       region_name     = var.atlas_mongo_region
       electable_nodes = 2
@@ -90,7 +90,7 @@ resource "mongodbatlas_cluster" "no_peer_database" {
   mongo_db_major_version       = var.atlas_mongo_version
   cluster_type                 = var.atlas_mongo_cluster_type
   replication_specs {
-    num_shards = var.atlas_mongo_replica
+    num_shards = var.atlas_mongo_replicas
     regions_config {
       region_name     = var.atlas_mongo_region
       electable_nodes = 2
