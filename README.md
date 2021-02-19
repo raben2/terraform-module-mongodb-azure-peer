@@ -18,12 +18,12 @@ The peering service principal has to be created via `az` cli tool
 
 `az ad sp create --id $PEER_SP_UUID`
 
-
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | atlas\_mongo\_cidr | target cidr for the peering connection | `string` | `""` | no |
+| atlas\_mongo\_cluster\_type | Configure cluster type | `string` | `"REPLICASET"` | no |
 | atlas\_mongo\_offering | instance type to use | `string` | `"M20"` | no |
 | atlas\_mongo\_org | mongodb organization id | `string` | `""` | no |
 | atlas\_mongo\_provider | Cloud provider | `string` | `""` | no |

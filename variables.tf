@@ -135,3 +135,10 @@ variable "public_access_enabled" {
   default     = false
   description = "allow database access from everywhere"
 }
+
+variable "atlas_mongo_cluster_type" {
+  type        = string
+  default     = "REPLICASET"
+  description = "Configure cluster type"
+
+}
