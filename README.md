@@ -31,6 +31,8 @@ The peering service principal has to be created via `az` cli tool
 | atlas\_mongo\_replicas | replication factor | `number` | `3` | no |
 | atlas\_mongo\_version | database version | `string` | `""` | no |
 | audit\_team | mongo atlas team for read only project access | `string` | `""` | no |
+| auto\_scaling\_compute\_down\_enabled | Specifies wether compute down scaling is enabled. | `bool` | `false` | no |
+| auto\_scaling\_compute\_enabled | Specifies wether compute up scaling is enabled. | `bool` | `false` | no |
 | auto\_scaling\_disk\_gb\_enabled | Specifies whether disk auto-scaling is enabled. For M2 and M5 it must be false. | `bool` | `false` | no |
 | disk\_size\_gb | The size in gigabytes of the server’s root volume. Maximum possible value of 4096 (i.e., 4 TB), minimum 10GB. | `number` | `10` | no |
 | env | environment | `string` | `""` | no |

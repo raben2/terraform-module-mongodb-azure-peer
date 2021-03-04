@@ -47,7 +47,16 @@ variable "auto_scaling_disk_gb_enabled" {
   description = "Specifies whether disk auto-scaling is enabled. For M2 and M5 it must be false. "
   default     = false
 }
-
+variable "auto_scaling_compute_enabled" {
+  type        = bool
+  description = "Specifies wether compute up scaling is enabled."
+  default     = false
+}
+variable "auto_scaling_compute_down_enabled" {
+  type        = bool
+  description = "Specifies wether compute down scaling is enabled."
+  default     = false
+}
 variable "disk_size_gb" {
   type        = number
   description = "The size in gigabytes of the server’s root volume. Maximum possible value of 4096 (i.e., 4 TB), minimum 10GB. "
