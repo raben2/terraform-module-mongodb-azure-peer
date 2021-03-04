@@ -41,6 +41,8 @@ The peering service principal has to be created via `az` cli tool
 | number\_of\_shards | shards created per default | `number` | `1` | no |
 | peer\_cidr | cidr subnet of the vnet for peering | `string` | `"0.0.0.0/0"` | no |
 | peering\_enabled | Helper variable for network peering | `bool` | `false` | no |
+| provider\_auto\_scaling\_compute\_max\_instance\_size | maximum instance size if scaling enabled | `string` | `"M20"` | no |
+| provider\_auto\_scaling\_compute\_min\_instance\_size | minimum instance size if scaling enabled | `string` | `"M10"` | no |
 | provider\_backup\_enabled | Set to true to enable Atlas continuous backups for the cluster | `bool` | `true` | no |
 | public\_access\_enabled | allow database access from everywhere | `bool` | `false` | no |
 | resource\_group\_name | azure resource group name | `string` | `""` | no |

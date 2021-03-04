@@ -57,6 +57,16 @@ variable "auto_scaling_compute_down_enabled" {
   description = "Specifies wether compute down scaling is enabled."
   default     = false
 }
+variable "provider_auto_scaling_compute_max_instance_size" {
+  type        = string
+  description = "maximum instance size if scaling enabled"
+  default     = "M20"
+}
+variable "provider_auto_scaling_compute_min_instance_size" {
+  type        = string
+  description = "minimum instance size if scaling enabled"
+  default     = "M10"
+}
 variable "disk_size_gb" {
   type        = number
   description = "The size in gigabytes of the server’s root volume. Maximum possible value of 4096 (i.e., 4 TB), minimum 10GB. "
