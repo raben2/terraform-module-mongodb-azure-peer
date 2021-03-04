@@ -52,7 +52,7 @@ variable "auto_scaling_compute_enabled" {
   description = "Specifies wether compute up scaling is enabled."
   default     = false
 }
-variable "auto_scaling_compute_down_enabled" {
+variable "auto_scaling_compute_scale_down_enabled" {
   type        = bool
   description = "Specifies wether compute down scaling is enabled."
   default     = false
