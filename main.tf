@@ -82,14 +82,16 @@ resource "mongodbatlas_cluster" "peer_database" {
 }
 
 resource "mongodbatlas_cluster" "no_peer_database" {
-  count                        = var.peering_enabled ? 0 : 1
-  project_id                   = mongodbatlas_project.project.id
-  num_shards                   = var.number_of_shards
-  name                         = format("%s-cluster-%s", var.name, var.env)
-  provider_backup_enabled      = var.provider_backup_enabled
-  auto_scaling_disk_gb_enabled = var.auto_scaling_disk_gb_enabled
-  mongo_db_major_version       = var.atlas_mongo_version
-  cluster_type                 = var.atlas_mongo_cluster_type
+  count                                           = var.peering_enabled ? 0 : 1
+  project_id                                      = mongodbatlas_project.project.id
+  num_shards                                      = var.number_of_shards
+  name                                            = format("%s-cluster-%s", var.name, var.env)
+  provider_backup_enabled                         = var.provider_backup_enabled
+  auto_scaling_disk_gb_enabled                    = var.auto_scaling_disk_gb_enabled
+  provider_auto_scaling_compute_max_instance_size = var.provider_auto_scaling_compute_max_instance_size
+  provider_auto_scaling_compute_min_instance_size = var.provider_auto_scaling_compute_min_instance_size
+  mongo_db_major_version                          = var.atlas_mongo_version
+  cluster_type                                    = var.atlas_mongo_cluster_type
   replication_specs {
     num_shards = 1
     regions_config {
