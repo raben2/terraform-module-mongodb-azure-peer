@@ -61,8 +61,8 @@ resource "mongodbatlas_cluster" "peer_database" {
   name                                            = format("%s-cluster-%s", var.name, var.env)
   provider_backup_enabled                         = var.provider_backup_enabled
   auto_scaling_disk_gb_enabled                    = var.auto_scaling_disk_gb_enabled
-  auto_scaling_compute_down_enabled               = var.auto_scaling_compute_down_enabled
   auto_scaling_compute_enabled                    = var.auto_scaling_compute_enabled
+  auto_scaling_compute_down_enabled               = var.auto_scaling_compute_down_enabled
   provider_auto_scaling_compute_max_instance_size = var.provider_auto_scaling_compute_max_instance_size
   provider_auto_scaling_compute_min_instance_size = var.provider_auto_scaling_compute_min_instance_size
   mongo_db_major_version                          = var.atlas_mongo_version
@@ -87,7 +87,9 @@ resource "mongodbatlas_cluster" "no_peer_database" {
   num_shards                                      = var.number_of_shards
   name                                            = format("%s-cluster-%s", var.name, var.env)
   provider_backup_enabled                         = var.provider_backup_enabled
+  auto_scaling_compute_enabled                    = var.auto_scaling_compute_enabled
   auto_scaling_disk_gb_enabled                    = var.auto_scaling_disk_gb_enabled
+  auto_scaling_compute_down_enabled               = var.auto_scaling_compute_down_enabled
   provider_auto_scaling_compute_max_instance_size = var.provider_auto_scaling_compute_max_instance_size
   provider_auto_scaling_compute_min_instance_size = var.provider_auto_scaling_compute_min_instance_size
   mongo_db_major_version                          = var.atlas_mongo_version
