@@ -166,10 +166,10 @@ resource "mongodbatlas_cloud_provider_snapshot_backup_policy" "no_peering_cluste
   //Keep all 4 default policies but modify the units and values
   //Could also just reflect the policy defaults here for later management
   policies {
-    id = mongodbatlas_cluster.no_peer_database.snapshot_backup_policy.0.policies.0.id
+    id = mongodbatlas_cluster.no_peer_database[0].snapshot_backup_policy.0.policies.0.id
 
     policy_item {
-      id                 = mongodbatlas_cluster.no_peer_database.snapshot_backup_policy.0.policies.0.policy_item.0.id
+      id                 = mongodbatlas_cluster.no_peer_database[0].snapshot_backup_policy.0.policies.0.policy_item.0.id
       frequency_interval = var.hourly_snapshot_frequency
       frequency_type     = "hourly"
       retention_unit     = "days"
@@ -177,7 +177,7 @@ resource "mongodbatlas_cloud_provider_snapshot_backup_policy" "no_peering_cluste
     }
 
     policy_item {
-      id                 = mongodbatlas_cluster.no_peer_database.snapshot_backup_policy.0.policies.0.policy_item.1.id
+      id                 = mongodbatlas_cluster.no_peer_database[0].snapshot_backup_policy.0.policies.0.policy_item.1.id
       frequency_interval = var.daily_snapshot_frequency
       frequency_type     = "daily"
       retention_unit     = "days"
@@ -185,7 +185,7 @@ resource "mongodbatlas_cloud_provider_snapshot_backup_policy" "no_peering_cluste
     }
 
     policy_item {
-      id                 = mongodbatlas_cluster.no_peer_database.snapshot_backup_policy.0.policies.0.policy_item.2.id
+      id                 = mongodbatlas_cluster.no_peer_database[0].snapshot_backup_policy.0.policies.0.policy_item.2.id
       frequency_interval = var.weekly_snapshot_frequency
       frequency_type     = "daily"
       retention_unit     = "days"
@@ -193,7 +193,7 @@ resource "mongodbatlas_cloud_provider_snapshot_backup_policy" "no_peering_cluste
     }
 
     policy_item {
-      id                 = mongodbatlas_cluster.no_peer_database.snapshot_backup_policy.0.policies.0.policy_item.3.id
+      id                 = mongodbatlas_cluster.no_peer_database[0].snapshot_backup_policy.0.policies.0.policy_item.3.id
       frequency_interval = var.monthly_snapshot_frequency
       frequency_type     = "monthly"
       retention_unit     = "months"
@@ -215,10 +215,10 @@ resource "mongodbatlas_cloud_provider_snapshot_backup_policy" "peering_cluster_b
   //Keep all 4 default policies but modify the units and values
   //Could also just reflect the policy defaults here for later management
   policies {
-    id = mongodbatlas_cluster.peer_database.snapshot_backup_policy.0.policies.0.id
+    id = mongodbatlas_cluster.peer_database[0].snapshot_backup_policy.0.policies.0.id
 
     policy_item {
-      id                 = mongodbatlas_cluster.peer_database.snapshot_backup_policy.0.policies.0.policy_item.0.id
+      id                 = mongodbatlas_cluster.peer_database[0].snapshot_backup_policy.0.policies.0.policy_item.0.id
       frequency_interval = var.hourly_snapshot_frequency
       frequency_type     = "hourly"
       retention_unit     = "days"
@@ -226,7 +226,7 @@ resource "mongodbatlas_cloud_provider_snapshot_backup_policy" "peering_cluster_b
     }
 
     policy_item {
-      id                 = mongodbatlas_cluster.peer_database.snapshot_backup_policy.0.policies.0.policy_item.1.id
+      id                 = mongodbatlas_cluster.peer_database[0].snapshot_backup_policy.0.policies.0.policy_item.1.id
       frequency_interval = var.daily_snapshot_frequency
       frequency_type     = "daily"
       retention_unit     = "days"
@@ -234,7 +234,7 @@ resource "mongodbatlas_cloud_provider_snapshot_backup_policy" "peering_cluster_b
     }
 
     policy_item {
-      id                 = mongodbatlas_cluster.peer_database.snapshot_backup_policy.0.policies.0.policy_item.2.id
+      id                 = mongodbatlas_cluster.peer_database[0].snapshot_backup_policy.0.policies.0.policy_item.2.id
       frequency_interval = var.weekly_snapshot_frequency
       frequency_type     = "daily"
       retention_unit     = "days"
@@ -242,7 +242,7 @@ resource "mongodbatlas_cloud_provider_snapshot_backup_policy" "peering_cluster_b
     }
 
     policy_item {
-      id                 = mongodbatlas_cluster.peer_database.snapshot_backup_policy.0.policies.0.policy_item.3.id
+      id                 = mongodbatlas_cluster.peer_database[0].snapshot_backup_policy.0.policies.0.policy_item.3.id
       frequency_interval = var.monthly_snapshot_frequency
       frequency_type     = "monthly"
       retention_unit     = "months"
