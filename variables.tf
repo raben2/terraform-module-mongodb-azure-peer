@@ -135,3 +135,68 @@ variable "public_access_enabled" {
   default     = false
   description = "allow database access from everywhere"
 }
+variable "backup_reference_hour" {
+  type        = number
+  default     = 3
+  description = "hour for the first daily snapshot to be taken"
+}
+
+variable "backup_reference_minute" {
+  type        = number
+  description = "minute for the first daily snapshot to be taken"
+  default     = 0
+}
+
+variable "backup_retention_window_days" {
+  type        = number
+  description = "number of days to be able to run point-in-time recovery operations"
+  default     = 6
+}
+
+variable "hourly_snapshot_frequency" {
+  type        = number
+  description = "number of hours between snapshots"
+  default     = 6
+}
+
+variable "hourly_snapshot_retention" {
+  type        = number
+  description = "retention in days to keep hourly snapshots"
+  default     = 1
+}
+
+variable "daily_snapshot_frequency" {
+  type        = number
+  description = "number of days between snapshots"
+  default     = 3
+}
+
+variable "daily_snapshot_retention" {
+  type        = number
+  description = "retention in days to keep hourly snapshots"
+  default     = 15
+}
+
+variable "weekly_snapshot_frequency" {
+  type        = number
+  description = "number of weeks between snapshots"
+  default     = 1
+}
+
+variable "weekly_snapshot_retention" {
+  type        = number
+  description = "retention in weeks to keep weekly snapshots"
+  default     = 4
+}
+
+variable "monthly_snapshot_frequency" {
+  type        = number
+  description = "number of months between snapshots"
+  default     = 1
+}
+
+variable "monthly_snapshot_retention" {
+  type        = number
+  description = "retention in months to keep monthly snapshots"
+  default     = 6
+}
