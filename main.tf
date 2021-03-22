@@ -156,8 +156,8 @@ resource "mongodbatlas_database_user" "audit_user" {
 
 resource "mongodbatlas_cloud_provider_snapshot_backup_policy" "no_peering_cluster_backup" {
   count        = var.peering_enabled ? 0 : 1
-  project_id   = mongodbatlas_cluster.no_peer_database.project_id
-  cluster_name = mongodbatlas_cluster.no_peer_database.name
+  project_id   = mongodbatlas_cluster.no_peer_database[0].project_id
+  cluster_name = mongodbatlas_cluster.no_peer_database[0].name
 
   reference_hour_of_day    = var.backup_reference_hour
   reference_minute_of_hour = var.backup_reference_minute
@@ -205,8 +205,8 @@ resource "mongodbatlas_cloud_provider_snapshot_backup_policy" "no_peering_cluste
 
 resource "mongodbatlas_cloud_provider_snapshot_backup_policy" "peering_cluster_backup" {
   count        = var.peering_enabled ? 1 : 0
-  project_id   = mongodbatlas_cluster.peer_database.project_id
-  cluster_name = mongodbatlas_cluster.peer_database.name
+  project_id   = mongodbatlas_cluster.peer_database[0].project_id
+  cluster_name = mongodbatlas_cluster.peer_database[0].name
 
   reference_hour_of_day    = var.backup_reference_hour
   reference_minute_of_hour = var.backup_reference_minute
