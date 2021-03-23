@@ -125,53 +125,6 @@ resource "mongodbatlas_database_user" "audit_user" {
   }
 }
 
-resource "mongodbatlas_cloud_provider_snapshot_backup_policy" "cluster_backup" {
-  project_id   = mongodbatlas_cluster.database.project_id
-  cluster_name = mongodbatlas_cluster.database.name
-
-  reference_hour_of_day    = var.backup_reference_hour
-  reference_minute_of_hour = var.backup_reference_minute
-  restore_window_days      = var.backup_retention_window_days
-
-  //Keep all 4 default policies but modify the units and values
-  //Could also just reflect the policy defaults here for later management
-  policies {
-    id = mongodbatlas_cluster.database.snapshot_backup_policy.0.policies.0.id
-
-    policy_item {
-      id                 = mongodbatlas_cluster.database.snapshot_backup_policy.0.policies.0.policy_item.0.id
-      frequency_interval = var.hourly_snapshot_frequency
-      frequency_type     = "hourly"
-      retention_unit     = "days"
-      retention_value    = var.hourly_snapshot_retention
-    }
-
-    policy_item {
-      id                 = mongodbatlas_cluster.database.snapshot_backup_policy.0.policies.0.policy_item.1.id
-      frequency_interval = var.daily_snapshot_frequency
-      frequency_type     = "daily"
-      retention_unit     = "days"
-      retention_value    = var.daily_snapshot_retention
-    }
-
-    policy_item {
-      id                 = mongodbatlas_cluster.database.snapshot_backup_policy.0.policies.0.policy_item.2.id
-      frequency_interval = var.weekly_snapshot_frequency
-      frequency_type     = "daily"
-      retention_unit     = "days"
-      retention_value    = var.weekly_snapshot_retention
-    }
-
-    policy_item {
-      id                 = mongodbatlas_cluster.database.snapshot_backup_policy.0.policies.0.policy_item.3.id
-      frequency_interval = var.monthly_snapshot_frequency
-      frequency_type     = "monthly"
-      retention_unit     = "months"
-      retention_value    = var.monthly_snapshot_retention
-    }
-  }
-}
-
 resource "random_string" "user_password" {
   count     = length(var.mongodb_collection_name)
   length    = 25
