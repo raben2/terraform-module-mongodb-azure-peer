@@ -1,6 +1,6 @@
 
 output "private_endpoints" {
-  value = mongodbatlas_cluster.database.connection_strings 
+  value = mongodbatlas_cluster.database.connection_strings
 }
 output "mongo_app_user_password" {
   value = [random_string.user_password[*].result]
