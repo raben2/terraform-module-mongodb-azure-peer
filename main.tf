@@ -47,7 +47,7 @@ resource "mongodbatlas_project_ip_whitelist" "rest" {
 
 resource "mongodbatlas_project_ip_whitelist" "public" {
   count      = var.public_access_enabled ? 1 : 0
-  depends_on = [mongodbatlas_cluster.peer_database, mongodbatlas_cluster.no_peer_database]
+  depends_on = [mongodbatlas_cluster.database]
   project_id = mongodbatlas_project.project.id
   cidr_block = "0.0.0.0/0"
   comment    = "public cluster access"
