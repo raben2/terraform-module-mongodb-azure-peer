@@ -38,14 +38,14 @@ resource "mongodbatlas_network_peering" "azure" {
   vnet_name             = var.vnet_name
 }
 
-resource "mongodbatlas_project_ip_whitelist" "rest" {
+resource "mongodbatlas_project_ip_access_list" "rest" {
   project_id = mongodbatlas_project.project.id
   cidr_block = var.peer_cidr
   comment    = format("cidr block for %s", var.vnet_name)
 
 }
 
-resource "mongodbatlas_project_ip_whitelist" "public" {
+resource "mongodbatlas_project_ip_access_list" "public" {
   count      = var.public_access_enabled ? 1 : 0
   depends_on = [mongodbatlas_cluster.database]
   project_id = mongodbatlas_project.project.id
@@ -125,7 +125,7 @@ resource "mongodbatlas_database_user" "audit_user" {
   }
 }
 
-resource "mongodbatlas_cloud_provider_snapshot_backup_policy" "cluster_backup" {
+resource "mongodbatlas_cloud_backup_schedule" "cluster_backup" {
   project_id   = mongodbatlas_cluster.database.project_id
   cluster_name = mongodbatlas_cluster.database.name
 
