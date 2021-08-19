@@ -149,7 +149,7 @@ resource "mongodbatlas_cloud_backup_schedule" "cluster_backup" {
 
   policy_item_weekly {
     frequency_interval = var.weekly_snapshot_frequency
-    retention_unit     = "days"
+    retention_unit     = "weeks"
     retention_value    = var.weekly_snapshot_retention
   }
 
