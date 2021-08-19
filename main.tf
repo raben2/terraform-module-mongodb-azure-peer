@@ -39,9 +39,10 @@ resource "mongodbatlas_network_peering" "azure" {
 }
 
 resource "mongodbatlas_project_ip_access_list" "rest" {
+  count      = var.public_access_enabled ? 1 : 0
   project_id = mongodbatlas_project.project.id
-  cidr_block = var.peer_cidr
-  comment    = format("cidr block for %s", var.vnet_name)
+  cidr_block = "0.0.0.0/0"
+  comment    = "public rest access"
 
 }
 
