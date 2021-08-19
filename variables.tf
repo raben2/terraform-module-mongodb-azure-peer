@@ -194,7 +194,7 @@ variable "hourly_snapshot_retention" {
 variable "daily_snapshot_frequency" {
   type        = number
   description = "number of days between snapshots"
-  default     = 3
+  default     = 1
 }
 
 variable "daily_snapshot_retention" {
