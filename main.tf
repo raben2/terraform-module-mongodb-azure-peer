@@ -136,28 +136,24 @@ resource "mongodbatlas_cloud_backup_schedule" "cluster_backup" {
   //Keep all 4 default policies but modify the units and values
   //Could also just reflect the policy defaults here for later managemen
   policy_item_hourly {
-    id                 = mongodbatlas_cluster.database.snapshot_backup_policy.0.policies.0.policy_item.0.id
     frequency_interval = var.hourly_snapshot_frequency
     retention_unit     = "days"
     retention_value    = var.hourly_snapshot_retention
   }
 
   policy_item_daily {
-    id                 = mongodbatlas_cluster.database.snapshot_backup_policy.0.policies.0.policy_item.1.id
     frequency_interval = var.daily_snapshot_frequency
     retention_unit     = "days"
     retention_value    = var.daily_snapshot_retention
   }
 
   policy_item_weekly {
-    id                 = mongodbatlas_cluster.database.snapshot_backup_policy.0.policies.0.policy_item.2.id
     frequency_interval = var.weekly_snapshot_frequency
     retention_unit     = "days"
     retention_value    = var.weekly_snapshot_retention
   }
 
   policy_item_monthly {
-    id                 = mongodbatlas_cluster.database.snapshot_backup_policy.0.policies.0.policy_item.3.id
     frequency_interval = var.monthly_snapshot_frequency
     retention_unit     = "months"
     retention_value    = var.monthly_snapshot_retention
